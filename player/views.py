@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.utils import timezone
 from .forms import Player_AttributesForm
+from .models import Player_Attributes
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 
@@ -9,7 +11,8 @@ def player_signin(request):
 
 def player_details(request, pk):
     # player_object = get_object_or_404(Player, pk=pk)
-    return render(request, 'player/player_details.html', {})
+    players = Player_Attributes.objects
+    return render(request, 'player/player_details.html', {'players': players})
 
 def player_attributes_new(request):
     if request.method == "POST":
