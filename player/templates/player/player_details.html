@@ -9,8 +9,10 @@
     <p>player attributes:</p>
 
     {% block Player_Attributes%}
+
       {% for player in players %}
-        {{ player.username }}
+        <p>Player Primary Key: {{ player.pk }}</p>
+        Player Username: {{ player.username }}
       {% endfor %}
 
     {% endblock %}
