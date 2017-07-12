@@ -11,7 +11,7 @@ def player_signin(request):
 
 def player_details(request, pk):
     # player_object = get_object_or_404(Player, pk=pk)
-    players = Player_Attributes.objects
+    players = Player_Attributes.objects.filter()
     return render(request, 'player/player_details.html', {'players': players})
 
 def player_attributes_new(request):

@@ -9,7 +9,10 @@
     <p>player attributes:</p>
 
     {% block Player_Attributes%}
-      {{ players }}
+      {% for player in players %}
+        {{ player.username }}
+      {% endfor %}
+
     {% endblock %}
   </body>
 </html>
