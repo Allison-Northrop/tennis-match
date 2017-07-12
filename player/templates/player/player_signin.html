@@ -1,17 +1,21 @@
 <!DOCTYPE html>
+{% extends 'player/base.html' %}
 {% load staticfiles %}
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1> On the player signin page</h1>
-    <button>Sign in</button>
-    <button>Sign up</button>
-    <a href="{% url 'player_attributes_new' %}">player form</a>
-    <form>
-      <input>search</input>
-    </form>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+  {% block content %}
+  <p>the extended part</p>
+  <form>
+    <input>search</input>
+  </form>
+  <a href="{% url 'player_attributes_new' %}">player form</a>
+  {% endblock %}
+  
+</body>
 </html>
