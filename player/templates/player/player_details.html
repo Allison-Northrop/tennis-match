@@ -1,20 +1,28 @@
+{% extends 'player/base.html' %}
 <h1>Individual player details</h1>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <p>player attributes:</p>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  {% block content %}
+  <p>player attributes:</p>
 
-    {% block Player_Attributes%}
+  {% block Player_Attributes%}
 
-      {% for player in players %}
-        <p>Player Primary Key: {{ player.pk }}</p>
-        Player Username: {{ player.username }}
-      {% endfor %}
+  {% for player in players %}
 
-    {% endblock %}
-  </body>
+  <p>Player Primary Key: {{ player.pk }}</p>
+  Player Username: {{ player.username }}
+  {% endfor %}
+
+  {% endblock %}
+
+  {% endblock %}
+
+
+  <!-- <a href={% url 'book' pk=book.pk %}>{{book.title}}</a> -->
+</body>
 </html>
