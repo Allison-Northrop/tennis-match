@@ -8,14 +8,24 @@
 </head>
 <body>
   {% block content %}
-  <p>player attributes:</p>
+  <h2>Player Summary</h2>
 
   {% block Player_Attributes%}
 
   {% for player in players %}
+  <!-- TODO make this a table? -->
+  <p><strong>Username:</strong> {{ player.username }}</p>
+  <p><strong>Skill level:</strong> {{ player.skill_level }}</p>
+  <p><strong>Looking for:</strong> {{ player.looking_for }}</p>
+  <p><strong>Availability:</strong> {{ player.availability_days }} at {{ player.availability_times}}</p>
+  <p><strong>Contact info:</strong> Phone: {{ player.phone_number }} | Email: {{ player.email}}</p>
+  <p><strong>Location:</strong> {{ player.address }}</p>
+  <p><strong>Additional info:</strong> {{ player.additional_info }}</p>
 
-  <p>Player Primary Key: {{ player.pk }}</p>
-  Player Username: {{ player.username }}
+
+
+
+
   {% endfor %}
 
   {% endblock %}
