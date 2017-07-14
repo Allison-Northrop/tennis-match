@@ -10,12 +10,14 @@
 <body>
 
   {% block content %}
-  <p>the extended part</p>
-  <form>
-    <input>search</input>
+
+  <form >
+    <input></input> <!-- input a id to capture what's in the form? -->
+    <input type="submit" value="Search" />
   </form>
-  <a href="{% url 'player_attributes_new' %}">player form</a>
+
+
   {% endblock %}
-  
+
 </body>
 </html>
