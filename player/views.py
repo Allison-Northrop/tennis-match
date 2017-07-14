@@ -9,6 +9,9 @@ from django.shortcuts import render, get_object_or_404
 def player_signin(request):
     return render(request, 'player/player_signin.html', {})
 
+def player_map(request):
+    return render(request, 'player/player_map.html', {})
+
 def player_details(request, pk):
     #do i need to find here?
     player_object = get_object_or_404(Player_Attributes, pk=pk)
