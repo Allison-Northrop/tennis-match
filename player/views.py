@@ -10,7 +10,9 @@ def player_signin(request):
     return render(request, 'player/player_signin.html', {})
 
 def player_map(request):
-    return render(request, 'player/player_map.html', {})
+    # player_object = get_object_or_404(Player_Attributes)
+    players = Player_Attributes.objects.filter()
+    return render(request, 'player/player_map.html', {'players': players})
 
 def player_details(request, pk):
     #do i need to find here?
