@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-{% extends 'player/base.html' %}
-
 <html>
 {% block content %}
-<head>
-<style>
-#map {
-  height: 590px;
-  width: 100%;
-}
-</style>
-</head>
-<body>
-  <div>
-
-
-  <h3> something else after the for loop</h3>
-</div>
-<!-- loop through and convert to latitutde and longitude for all addresses. then when the list is made, loop through it   -->
-  <div id="map"></div>
+  <head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    <div id="map"></div>
 
   <script>
     var map_players = []
@@ -33,37 +52,32 @@
     //     for (i = 0; i < map_players.[i]["address"]; i ++) {
     // }
 
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: {lat: 47.608013, lng: -122.335167}
-    });
-    var marker = new google.maps.Marker({
-      // position: uluru,
-      position: {lat: 47.608013, lng: -122.335167},
-      map: map
-    });
-
-    var new_marker = new google.maps.Marker({
-      position: {lat: -30.363, lng: 140.044},
-      map: map
-    });
-  }
-
-  function codeAddress() {
-  var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: {lat: -34.397, lng: 150.644}
       });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      var geocoder = new google.maps.Geocoder();
+
+      document.getElementById('submit').addEventListener('click', function() {
+        geocodeAddress(geocoder, map);
+      });
     }
-  });
-}
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
   </script>
 
   <script async defer
