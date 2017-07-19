@@ -24,9 +24,9 @@
     var map_players = []
 
     "{% for player in players %}"
-      map_players.push( { username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.availability_days}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}" })
+      map_players.push( { username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.availability_days}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}", latitude: "{{player.latitude}}", longitude: "{{player.longitude}}" })
     "{% endfor %}"
-    console.log(map_players[8]["address"])
+    console.log(map_players)
 
     // console.log(map_players)
     // var coordinates = {}

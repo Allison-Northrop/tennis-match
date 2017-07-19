@@ -37,25 +37,3 @@ class Player_Attributes(models.Model):
             latitude = data['results'][0]['geometry']['location']['lat']
             longitude = data['results'][0]['geometry']['location']['lng']
             return Decimal(latitude), Decimal(longitude)
-
-
-    # def convert_address(self):
-    #     address = self.address
-    #
-    #     if not self.latitude or not self.longitude:
-    #         latlng = self.geocode(address)
-    #         latlng = latlng.split(",")
-    #         self.latitude = latlng[0]
-    #         self.longitude = latlng[1]
-    #     super(Marker, self).save()
-    #
-    # def geocode(self, address):
-    #     output = "csv"
-    #     address = urllib.quote_plus(address)
-    #     request = request = "http://maps.google.com/maps/geo?q=%s&output=%s&key=%s" % (address, output, config.GOOGLE_API_KEY)
-    #     data = urllib.urlopen(request).read()
-    #     dlist = data.split(",")
-    #     if dlist[0] == '200':
-    #         return "%s,%s" % (dlist[2], dlist[3])
-    #     else:
-    #         return ','
