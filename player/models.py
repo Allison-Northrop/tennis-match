@@ -12,5 +12,7 @@ class Player_Attributes(models.Model):
     phone_number = models.CharField(max_length=11)
     email = models.EmailField(max_length=254)
     additional_info = models.TextField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    # latitude = models.FloatField()
+    # longitude = models.FloatField()
+
+    # def geocoder
