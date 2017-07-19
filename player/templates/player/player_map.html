@@ -26,6 +26,7 @@
     "{% for player in players %}"
       map_players.push( { username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.availability_days}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}" })
     "{% endfor %}"
+    console.log(map_players[8]["address"])
 
     // console.log(map_players)
     // var coordinates = {}
@@ -38,26 +39,29 @@
       zoom: 4,
       center: {lat: 47.608013, lng: -122.335167}
     });
-    var marker = new google.maps.Marker({
-      // position: uluru,
-      position: {lat: 47.608013, lng: -122.335167},
-      map: map
-    });
-
-    var new_marker = new google.maps.Marker({
-      position: {lat: -30.363, lng: 140.044},
-      map: map
-    });
+  //
+  //   var geocoder = new google.maps.Geocoder();
+  //   var marker = new google.maps.Marker({
+  //     // position: uluru,
+  //     position: {lat: 47.608013, lng: -122.335167},
+  //     map: map
+  //   });
+  //
+  //   var new_marker = new google.maps.Marker({
+  //     position: {lat: -30.363, lng: 140.044},
+  //     map: map
+  //   });
   }
 
   function codeAddress() {
-  var address = document.getElementById('address').value;
+  var address = map_players[8]["address"];
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location
+
       });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
