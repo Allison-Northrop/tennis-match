@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+
 <html>
 <head>
   <meta charset="utf-8">
   <title></title>
+  {% load static %}
+  <link href="https://fonts.googleapis.com/css?family=Anton|Lobster|Monofett|Plaster|Shrikhand|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'player/style.css' %}">
 </head>
 <body>
   <div class="page-header">
-      <a href= {% url 'player_signin' %}><h1> Game, Set, Match</h1></a>
+      <a href= {% url 'player_signin' %}><h1> CrossCourt </h1></a>
       <button>Sign in</button>
 
       <form action="{% url 'player_attributes_new' %}">

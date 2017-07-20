@@ -41,32 +41,43 @@
     });
 
     var infoWindow = new google.maps.InfoWindow;
-    var infowincontent = document.createElement('div');
-    var strong = document.createElement('strong');
-    strong.textContent = name
-    infowincontent.appendChild(strong);
-    infowincontent.appendChild(document.createElement('br'));
-
-    var text = document.createElement('text');
-    text.textContent = map_players[2]
-    infowincontent.appendChild(text);
-  
 
     for (i = 0; i < map_players.length; i++) {
+
+      var infowincontent = document.createElement('div');
+      var strong = document.createElement('strong');
+      strong.textContent = name
+      infowincontent.appendChild(strong);
+      infowincontent.appendChild(document.createElement('br'));
+
+      var text = document.createElement('text');
+      text.textContent = map_players[i]["address"]
+      console.log(text.textContent)
+      infowincontent.appendChild(text);
+
       console.log(parseFloat(map_players[i]["latitude"])) //coverting into float
       console.log(parseFloat(map_players[i]["longitude"]))
+
       var marker = new google.maps.Marker({
         position: {lat: parseFloat(map_players[i]["latitude"]), lng: parseFloat(map_players[i]["longitude"])},
         map: map
       });
 
+
       marker.addListener('click', function() {
-        console.log("clicked the marker")
+        console.log("clicked the marker" + i)
         infoWindow.setContent(infowincontent);
         infoWindow.open(map, marker);
       })
     }
+
+
+
+
+
   }
+
+
 
 
   </script>
