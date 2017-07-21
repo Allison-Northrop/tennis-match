@@ -4,10 +4,15 @@ from .forms import Player_AttributesForm
 from .models import Player_Attributes
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def player_signin(request):
     return render(request, 'player/player_signin.html', {})
+
+# def player_signin(request):
+#     return render(request, 'player/player_signin.html', {})
 
 def player_map(request):
     players = Player_Attributes.objects.filter()
