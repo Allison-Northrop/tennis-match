@@ -18,16 +18,10 @@
   <!-- loop through and convert to latitutde and longitude for all addresses. then when the list is made, loop through it   -->
   <div id="map"></div>
 
-  <script>
-  var map_players = []
-
-  "{% for player in players %}"
-    map_players.push( {id: "{{player.id}}", username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.looking_for}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}", latitude: "{{player.latitude}}", longitude: "{{player.longitude}}" })
-  "{% endfor %}"
-  console.log(map_players)
-
+<script>
 
   function initMap() {
+
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: {lat: 47.608013, lng: -122.335167}
@@ -35,49 +29,69 @@
 
     var infoWindow = new google.maps.InfoWindow;
 
-    for (i = 0; i < map_players.length; i++) {
+    var map_players = []
 
-      var infowincontent = document.createElement('div');
-      var strong = document.createElement('strong');
-      strong.textContent = name
-      infowincontent.appendChild(strong);
-      infowincontent.appendChild(document.createElement('br'));
+    "{% for player in players %}"
+    map_players.push(  "{{player.id}}", "{{player.username}}", "{{player.skill_level}}", "{{player.address}}", "{{player.availability_days}}", "{{player.availability_times}}", "{{player.looking_for}}", "{{player.phone_number}}", "{{player.email}}", "{{player.additional_info}}", "{{player.latitude}}", "{{player.longitude}}" })
+    "{% endfor %}"
+    console.log(map_players)
 
+    map_players.prototype.forEach.call(markers, function(markerElem) {
+      var id = markerElem.getAttribute('id');
+      var username = markerElem.getAttribute('username');
+      var skill_level = markerElem.getAttribute('skill_level');
+      var address = markerElem.getAttribute('address');
+      var availability_days = markerElem.getAttribute('availability_days');
+      var availability_times = markerElem.getAttribute('availability_times');
+      var looking_for = markerElem.getAttribute('looking_for');
+      var phone_number = markerElem.getAttribute('phone_number');
+      var player_email = markerElem.getAttribute('player_email');
+      var additional_info = markerElem.getAttribute('additional_info');
+      var point = new google.maps.LatLng(
+        parseFloat(markerElem.getAttribute('latitude')),
+        parseFloat(markerElem.getAttribute('longitude')));
 
+        var infowincontent = document.createElement('div');
+        var strong = document.createElement('strong');
+        strong.textContent = name
+        infowincontent.appendChild(strong);
+        infowincontent.appendChild(document.createElement('br'));
 
-      var text = document.createElement('text');
-      text.textContent = "Username: " + map_players[i]["username"] + " | " + "Skill level: " + map_players[i]["skill_level"] + " | " + "Looking for: " + map_players[i]["looking_for"] + " | " + "More info"
+        var text = document.createElement('text');
+        text.textContent = username
+        // "Username: " + map_players[i]["username"] + " | " + "Skill level: " + map_players[i]["skill_level"] + " | " + "Looking for: " + map_players[i]["looking_for"] + " | " + "More info"
 
-      infowincontent.appendChild(text);
-      console.log(text)
+        infowincontent.appendChild(text);
+        console.log(text)
 
-      console.log(parseFloat(map_players[i]["latitude"])) //coverting into float
-      console.log(parseFloat(map_players[i]["longitude"]))
+        console.log(parseFloat(map_players[i]["latitude"])) //coverting into float
+        console.log(parseFloat(map_players[i]["longitude"]))
         //keep track of this marker
-      var marker = new google.maps.Marker({
-        position: {lat: parseFloat(map_players[i]["latitude"]), lng: parseFloat(map_players[i]["longitude"])},
-        map: map
-      });
+        var marker = new google.maps.Marker({
+          map: map
+          position: point,
+          // {lat: parseFloat(map_players[i]["latitude"]), lng: parseFloat(map_players[i]["longitude"])},
+        });
 
-      console.log(marker)
-      marker.addListener('click', function() {
-        console.log("clicked the marker" + i)
-        infoWindow.setContent(infowincontent);
-        infoWindow.open(map, marker);
+        console.log(marker)
+        marker.addListener('click', function() {
+          console.log("clicked the marker" + i)
+          infoWindow.setContent(infowincontent);
+          infoWindow.open(map, marker);
+        });
       });
+    };
+
     }
 
 
-  }
 
 
+    </script>
 
-
-  </script>
-
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&callback=initMap">
-  </script>
-</body>
-{% endblock %}
-</html>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&callback=initMap">
+    </script>
+  </body>
+  {% endblock %}
+  </html>
