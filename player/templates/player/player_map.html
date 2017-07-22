@@ -19,12 +19,12 @@
   <div id="map"></div>
 
   <script>
-  var map_players = []
+  var player_list = []
 
   "{% for player in players %}"
-    map_players.push( {id: "{{player.id}}", username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.looking_for}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}", latitude: "{{player.latitude}}", longitude: "{{player.longitude}}" })
+    player_list.push( {id: "{{player.id}}", username: "{{player.username}}", skill_level: "{{player.skill_level}}", address: "{{player.address}}", availability_days: "{{player.availability_days}}", availability_times: "{{player.availability_times}}", looking_for: "{{player.looking_for}}", phone_number: "{{player.phone_number}}", email: "{{player.email}}", additional_info: "{{player.additional_info}}", latitude: "{{player.latitude}}", longitude: "{{player.longitude}}" })
   "{% endfor %}"
-  console.log(map_players)
+  console.log(player_list)
 
 
   function initMap() {
@@ -35,7 +35,24 @@
 
     var infoWindow = new google.maps.InfoWindow;
 
-    for (i = 0; i < map_players.length; i++) {
+
+
+    Array.prototype.forEach.call(player_list, function(markerElem) {
+      var id = markerElem['id'];
+      console.log('id is ' + id);
+      var username = markerElem['username'];
+      var skill_level = markerElem['skill_level'];
+      var address = markerElem['address'];
+      var availability_days = markerElem['availability_days'];
+      var availability_times = markerElem['availability_times'];
+      var looking_for = markerElem['looking_for'];
+      var phone_number = markerElem['phone_number'];
+      var email = markerElem['email'];
+      var additional_info = markerElem['additional_info'];
+      var point = new google.maps.LatLng(
+        parseFloat(markerElem['latitude']),
+        parseFloat(markerElem['longitude']));
+
 
       var infowincontent = document.createElement('div');
       var strong = document.createElement('strong');
@@ -46,26 +63,26 @@
 
 
       var text = document.createElement('text');
-      text.textContent = "Username: " + map_players[i]["username"] + " | " + "Skill level: " + map_players[i]["skill_level"] + " | " + "Looking for: " + map_players[i]["looking_for"] + " | " + "More info"
+      text.textContent = "***"+address
 
       infowincontent.appendChild(text);
       console.log(text)
 
-      console.log(parseFloat(map_players[i]["latitude"])) //coverting into float
-      console.log(parseFloat(map_players[i]["longitude"]))
+      console.log(['point']) //coverting into float
+
         //keep track of this marker
       var marker = new google.maps.Marker({
-        position: {lat: parseFloat(map_players[i]["latitude"]), lng: parseFloat(map_players[i]["longitude"])},
+        position: point,
         map: map
       });
 
       console.log(marker)
       marker.addListener('click', function() {
-        console.log("clicked the marker" + i)
+        console.log("clicked the marker")
         infoWindow.setContent(infowincontent);
         infoWindow.open(map, marker);
       });
-    }
+    });
 
 
   }
