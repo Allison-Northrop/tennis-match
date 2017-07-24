@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^player_attributes/new/$', views.player_attributes_new, name='player_attributes_new'),
     #do I put a url for the sign in in here?
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^player_attributes_edit/(?P<pk>\d+)/edit/$', views.player_attributes_edit, name='player_attributes_edit'),
 ]

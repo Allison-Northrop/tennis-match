@@ -1,11 +1,5 @@
 {% extends 'player/base.html' %}
 <h1>Individual player details</h1>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
 <body>
   {% block content %}
   <h4>You're set!</h4>
@@ -23,7 +17,7 @@
     <p><strong>Location:</strong> {{ player.address }}</p>
     <p><strong>Additional info:</strong> {{ player.additional_info }}</p>
 
-  <button class="btn btn-primary">Edit</button>
+  <a href="{% url 'player_attributes_edit' pk=player.pk %}"<button class="btn btn-primary">Edit</button>
 
 <!-- <form action="{% url 'player_map' %}"> -->
   <a href= "{% url 'player_map' %}"><button class="btn btn-primary" type="submit">Player Map >></button></a>
@@ -38,4 +32,3 @@
 
   <!-- <a href={% url 'book' pk=book.pk %}>{{book.title}}</a> -->
 </body>
-</html>
