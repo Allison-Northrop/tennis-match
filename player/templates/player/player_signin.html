@@ -12,8 +12,8 @@
   {% block content %}
 
 
-  <div class='nav'>
-    <div>
+
+    <div class="text-center">
     <form method="post" action="{% url 'social:begin' 'twitter' %}">
       {% csrf_token %}
       {{ form.as_p }}
@@ -21,17 +21,16 @@
     </form>
     <br>
     </div>
-    <div>
-      <a href="{% url 'player_attributes_new' %}"><button type="submit" class="btn btn-primary">Create Player Profile </button></a>
+
+    <div class="text-center">
+      <a href="{% url 'player_attributes_new' %}"><button type="submit" class="btn btn-primary">Create Profile </button></a>
     </div>
+    <br>
+
+
+  <div class="text-center">
+    <a href="{% url 'player_map' %}"><button class="btn btn-primary">Map</button></a>
   </div>
-  <form >
-    <input></input> <!-- input a id to capture what's in the form? -->
-    <input type="submit" value="Search" />
-  </form>
-
-  <a href="{% url 'player_map' %}">map</a>
-
   {% endblock %}
 
 </body>
