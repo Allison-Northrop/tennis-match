@@ -23,9 +23,11 @@
     <p><strong>Location:</strong> {{ player.address }}</p>
     <p><strong>Additional info:</strong> {{ player.additional_info }}</p>
 
+  <button class="btn btn-primary">Edit</button>
 
-  <br><h3>Take me to the players>></h3></br>
-
+<!-- <form action="{% url 'player_map' %}"> -->
+  <a href= "{% url 'player_map' %}"><button class="btn btn-primary" type="submit">Player Map >></button></a>
+<!-- </form> -->
 
   {% endfor %}
 

@@ -10,16 +10,21 @@
 <body>
 
   {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a>
 
 
-
+  <div class='nav'>
+    <div>
+    <form method="post" action="{% url 'social:begin' 'twitter' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <br>
+    </div>
+    <div>
+      <a href="{% url 'player_attributes_new' %}"><button type="submit" class="btn btn-primary">Create Player Profile </button></a>
+    </div>
+  </div>
   <form >
     <input></input> <!-- input a id to capture what's in the form? -->
     <input type="submit" value="Search" />

@@ -38,6 +38,7 @@ def player_attributes_new(request):
         if form.is_valid():
             player = form.save()
             player.save()
+            # request.session["player_id"] = Player_Attributes.id
             return redirect(player_details, pk=player.pk)
     else:
         form = Player_AttributesForm()
