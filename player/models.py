@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Player_Attributes(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     skill_level = models.FloatField()
     address = models.CharField(max_length=500)
     availability_days = models.CharField(max_length=500)

@@ -43,7 +43,9 @@ def player_attributes_new(request):
         form = Player_AttributesForm(request.POST)
         if form.is_valid():
             player = form.save()
+            player.username = request.user
             # request.session['player_id'] = player.pk
+            # import ipdb; ipdb.set_trace() #this imports ipdb and then calls fucntion
             player.save()
             return redirect(player_details, pk=player.pk)
     else:
