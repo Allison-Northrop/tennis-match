@@ -44,8 +44,8 @@ def player_attributes_new(request):
         form = Player_AttributesForm(request.POST)
         if form.is_valid():
             player = form.save()
-            request.session['player_id'] = player.pk
-            # player.save()
+            # request.session['player_id'] = player.pk
+            player.save()
             return redirect(player_details, pk=player.pk)
     else:
         form = Player_AttributesForm()
