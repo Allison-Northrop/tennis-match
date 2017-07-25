@@ -31,7 +31,6 @@ def player_list(request):
     players = Player_Attributes.objects.filter()
     return render(request, 'player/player_list.html', {'players': players})
 
-@login_required
 def player_details(request, pk):
     # player_object = get_object_or_404(Player_Attributes, pk=request.session['player_id'])
     players = Player_Attributes.objects.filter(pk=pk) #note to self, this pk=pk thing is the way to get individual items specific to the user popping up.

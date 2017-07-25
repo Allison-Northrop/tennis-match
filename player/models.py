@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Player_Attributes(models.Model):
-    username = models.ForeignKey(User)
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
     skill_level = models.FloatField()
     address = models.CharField(max_length=500)
     availability_days = models.CharField(max_length=500)
@@ -19,9 +19,14 @@ class Player_Attributes(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0.0, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0.0, null=True)
 
+
     def save(self):
-        if not self.latitude or not self.longitude:
-            self.latitude, self.longitude = self.geocode(self.address)
+        # self.username = request.user
+        # if not self.latitude or not self.longitude: or not self.username:
+        # self.username = User.username
+        # self.username = User
+        self.latitude, self.longitude = self.geocode(self.address)
+            # self.username = request.user
 
         super(Player_Attributes, self).save()
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'player/base.html' %}
 {% load staticfiles %}
+{% load user_check %}
 
 <html>
 <head>
@@ -23,8 +24,10 @@
     </div>
 
     <div class="text-center">
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated and user|user_does_not_have_player_attributes %}
         <a href="{% url 'player_attributes_new' %}"><button type="submit" class="btn btn-primary">Create Profile </button></a>
+      {% elif user.is_authenticated and not user|user_does_not_have_player_attributes %}
+        <a href="{% url 'player_attributes_edit' user.player_attributes.pk %}"><button type="submit" class="btn btn-primary">Edit Profile</button></a>
       {% else %}
         <p>log in to create a profile</p>
       {% endif %}
