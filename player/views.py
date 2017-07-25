@@ -27,6 +27,9 @@ def player_map(request):
     # return JsonResponse(player_list, safe=False, rendered_html)
     return render(request, 'player/player_map.html', {'players': players})
 
+def player_list(request):
+    players = Player_Attributes.objects.filter()
+    return render(request, 'player/player_list.html', {'players': players})
 
 @login_required
 def player_details(request, pk):
