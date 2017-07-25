@@ -46,6 +46,7 @@ def player_attributes_new(request):
         form = Player_AttributesForm()
     return render(request, 'player/player_attributes_edit.html', {'form': form})
 
+@login_required
 def player_attributes_edit(request, pk):
     player = get_object_or_404(Player_Attributes, pk=pk)
     if request.method == "POST":
@@ -57,3 +58,8 @@ def player_attributes_edit(request, pk):
     else:
         form = Player_AttributesForm(instance=player)
     return render(request, 'player/player_attributes_edit.html', {'form': form})
+
+def player_attributes_remove(request, pk):
+    player = get_object_or_404(Player_Attributes, pk=pk)
+    player.delete()
+    return render(request, 'player/player_signin.html', {})
