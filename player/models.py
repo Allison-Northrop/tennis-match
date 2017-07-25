@@ -3,10 +3,11 @@ from django.utils import timezone
 import urllib.request
 import json
 from decimal import Decimal
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Player_Attributes(models.Model):
-    username = models.CharField(max_length=100)
+    username = models.ForeignKey(User)
     skill_level = models.FloatField()
     address = models.CharField(max_length=500)
     availability_days = models.CharField(max_length=500)
