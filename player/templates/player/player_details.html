@@ -17,6 +17,7 @@
     <p><strong>Location:</strong> {{ player.address }}</p>
     <p><strong>Additional info:</strong> {{ player.additional_info }}</p>
 
+
   <a href="{% url 'player_attributes_edit' pk=player.pk %}"><button class="btn btn-primary">Edit</button></a>
   <a href="{% url 'player_attributes_remove' pk=player.pk %}"><button class="btn btn-primary">Delete</button></a>
 

@@ -9,6 +9,7 @@ import json
 from django.http import JsonResponse
 from .forms import Player_AttributesForm
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 
 # Create your views here.
 # @login_required
@@ -17,7 +18,6 @@ def player_signin(request): #the home page
 
 # def player_signin(request):
 #     return render(request, 'player/player_signin.html', {})
-
 
 def player_map(request):
     players = Player_Attributes.objects.filter()
@@ -55,7 +55,7 @@ def player_attributes_new(request):
 def player_attributes_edit(request, pk):
     player = get_object_or_404(Player_Attributes, pk=pk)
     if request.method == "POST":
-        form = Player_AttributesForm(request.POST, instance=player)
+        form = Player_AttributesForm(request.POST, instance=player) #this is the thing I need for the new one
         if form.is_valid():
             player = form.save(commit=False)
             player.save()

@@ -4,7 +4,10 @@
 
 
 {% block content %}
-  <form method="POST">{% csrf_token %}
+  <form method="POST">
+    <label for="username"> Username: </label>
+    <input id="username" name="username" value="{{ user.username }}"</input>
+    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Save</button>
   </form>

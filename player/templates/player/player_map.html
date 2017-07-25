@@ -11,11 +11,16 @@
 </style>
 </head>
 <body>
-  <div>
+  <div class="text-center">
+    <a href="{% url 'player_map' %}"><button class="btn btn-primary">Player Map</button></a>
 
+    <a href="{% url 'player_list' %}"><button class="btn btn-primary">Player List</button></a>
   </div>
+  <br>
+
   <!-- loop through and convert to latitutde and longitude for all addresses. then when the list is made, loop through it   -->
   <div id="map"></div>
+
 
   <script>
   var player_list = []

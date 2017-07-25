@@ -1,7 +1,14 @@
 {% extends 'player/base.html' %}
 {% block content %}
+<div class=text-center>
+  <a href="{% url 'player_map' %}"><button class="btn btn-primary">Player Map</button></a>
+  <a href="{% url 'player_list' %}"><button class="btn btn-primary">Player List</button></a>
+</div>
+<br>
   {% for player in players %}
-  <a href= "{% url 'player_details' player.pk %}">{{player.username}}</a><br>
+
+  <a href= "{% url 'player_details' player.pk %}"><p class=text-center>{{player.username}}<p></a>
+  <p class=text-center>{{player.skill_level}}</p></br>
 
   {% endfor %}
 
