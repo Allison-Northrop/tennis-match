@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 import json
 from django.http import JsonResponse
 from .forms import Player_AttributesForm
+from django.contrib.auth import logout
 
 # Create your views here.
 # @login_required
@@ -16,6 +17,7 @@ def player_signin(request): #the home page
 
 # def player_signin(request):
 #     return render(request, 'player/player_signin.html', {})
+
 
 def player_map(request):
     players = Player_Attributes.objects.filter()
@@ -46,7 +48,7 @@ def player_attributes_new(request):
         form = Player_AttributesForm()
     return render(request, 'player/player_attributes_edit.html', {'form': form})
 
-@login_required
+@login_required #edits existing profile
 def player_attributes_edit(request, pk):
     player = get_object_or_404(Player_Attributes, pk=pk)
     if request.method == "POST":
@@ -59,7 +61,8 @@ def player_attributes_edit(request, pk):
         form = Player_AttributesForm(instance=player)
     return render(request, 'player/player_attributes_edit.html', {'form': form})
 
-def player_attributes_remove(request, pk):
+@login_required
+def player_attributes_remove(request, pk): #removes existing profile
     player = get_object_or_404(Player_Attributes, pk=pk)
     player.delete()
     return render(request, 'player/player_signin.html', {})

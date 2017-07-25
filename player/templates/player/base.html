@@ -13,10 +13,17 @@
 </head>
 <body>
 
+  {% if user.is_authenticated %}
+    <a href=><p class="text-right">Logged in as {{user.username}}</p></a>
 
+  {% else %}
+    <p> sign in to see profile </p>
+  {% endif %}
   <div class="page-header">
       <a href= {% url 'player_signin' %}><h1 class="text-center"> Crosscourt </h1></a>
   </div>
+
+
 
     {% block content %}
     {% endblock %}
